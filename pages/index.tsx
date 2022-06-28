@@ -14,7 +14,10 @@ type Product = {
 
 export function Home() {
   const [search, setSearch] = useState('')
-  const [result, setResult] = useState<Results | null>(null)
+  const [result, setResult] = useState<Results>({
+    totalPrice: 0,
+    data: []
+  })
 
   async function handleSearch(event: FormEvent) {
     event.preventDefault()
@@ -65,7 +68,7 @@ export function Home() {
       </form>
 
       <SearchResults
-        results={result?.data as []}
+        results={result.data}
         totalPrice={result?.totalPrice as number}
         onAddToWishList={addToWishList}
       />
